@@ -48,7 +48,7 @@
     function addBid() {
         const newBid = bidInput.value.trim();
         if (newBid !== '') {
-            bids.push(newBid);
+            bids.push(newBid + " -bidder1");
             displayBids(bids);
             bidInput.value = ''; // Clear input
             saveBidsToLocalStorage();
@@ -58,7 +58,7 @@
     function addBid2() {
         const newBid = bidInput2.value.trim();
         if (newBid !== '') {
-            bids.push(newBid);
+            bids.push(newBid + " -bidder2");
             displayBids(bids);
             bidInput2.value = ''; // Clear input
             saveBidsToLocalStorage();
