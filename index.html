@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bidding System</title>
+<style>
+    #bids-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="bids-container">
+    <!-- Bids will be displayed here -->
+</div>
+
+<input type="text" id="bid-input">
+<button id="place-bid-btn">Place Bid</button>
+
+<input type="text" id="bid-input-2">
+<button id="place-bid-btn-2">Place Bid</button>
+
+<script>
+    const bidsElement = document.getElementById('bids-container');
+    const bidInput = document.getElementById('bid-input');
+    const bidInput2 = document.getElementById('bid-input-2');
+    const placeBidBtn = document.getElementById('place-bid-btn');
+    const placeBidBtn2 = document.getElementById('place-bid-btn-2');
+
+    // Function to display bids
+    function displayBids(bids) {
+        bidsElement.innerHTML = ''; // Clear previous bids
+        bids.forEach(bid => {
+            const bidItem = document.createElement('div');
+            bidItem.textContent = bid;
+            bidsElement.appendChild(bidItem);
+        });
+    }
+
+    // Function to add a bid to the array
+    function addBid() {
+        const newBid = bidInput.value.trim();
+        if (newBid !== '') {
+            bids.push(newBid);
+            displayBids(bids);
+            bidInput.value = ''; // Clear input
+            saveBidsToLocalStorage();
+        }
+    }
+
+    function addBid2() {
+        const newBid = bidInput2.value.trim();
+        if (newBid !== '') {
+            bids.push(newBid);
+            displayBids(bids);
+            bidInput2.value = ''; // Clear input
+            saveBidsToLocalStorage();
+        }
+    }
+
+    // Function to save bids to localStorage
+    function saveBidsToLocalStorage() {
+        localStorage.setItem('bids', JSON.stringify(bids));
+    }
+
+    // Function to retrieve bids from localStorage
+    function retrieveBidsFromLocalStorage() {
+        const bidsFromStorage = localStorage.getItem('bids');
+        if (bidsFromStorage) {
+            bids = JSON.parse(bidsFromStorage);
+            displayBids(bids);
+        }
+    }
+
+    // Initialize bids array
+    let bids = [];
+
+    // Retrieve bids from localStorage on page load
+    retrieveBidsFromLocalStorage();
+
+    // Add event listeners to Place Bid buttons
+    placeBidBtn.addEventListener('click', addBid);
+    placeBidBtn2.addEventListener('click', addBid2);
+</script>
+
+</body>
+</html>
