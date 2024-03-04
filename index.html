@@ -24,12 +24,15 @@
 <input type="text" id="bid-input-2">
 <button id="place-bid-btn-2">Place Bid</button>
 
+<button id="clear-bids-btn">Clear Bids</button>
+
 <script>
     const bidsElement = document.getElementById('bids-container');
     const bidInput = document.getElementById('bid-input');
     const bidInput2 = document.getElementById('bid-input-2');
     const placeBidBtn = document.getElementById('place-bid-btn');
     const placeBidBtn2 = document.getElementById('place-bid-btn-2');
+    const clearBidsBtn = document.getElementById('clear-bids-btn');
 
     // Function to display bids
     function displayBids(bids) {
@@ -76,6 +79,13 @@
         }
     }
 
+    // Function to clear bids from localStorage
+        function clearBidsFromLocalStorage() {
+        localStorage.removeItem('bids');
+        bids = []; // Clear bids array
+        displayBids(bids); // Update UI
+    }
+
     // Initialize bids array
     let bids = [];
 
@@ -85,6 +95,9 @@
     // Add event listeners to Place Bid buttons
     placeBidBtn.addEventListener('click', addBid);
     placeBidBtn2.addEventListener('click', addBid2);
+    // Add event listener to Clear Bids button
+    clearBidsBtn.addEventListener('click', clearBidsFromLocalStorage);
+
 </script>
 
 </body>
